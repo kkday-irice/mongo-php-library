@@ -595,7 +595,7 @@ function select_server_for_aggregate_write_stage(Manager $manager, array &$optio
      * preference and repeat server selection if it previously failed or
      * selected a secondary. */
     if (! all_servers_support_write_stage_on_secondary($manager->getServers())) {
-        $options['readPreference'] = new ReadPreference(ReadPreference::PRIMARY);
+        $options['readPreference'] = new ReadPreference('primary');
 
         if ($server === null || $server->isSecondary()) {
             return select_server($manager, $options);
